@@ -29,17 +29,11 @@ public class Main {
                 .map(Person::getFamily)
                 .collect(toList());
 
-        List<Person> finalList = persons.stream()
-                .filter(ed -> ed.getEducation().equals(Education.HIGHER) && ed.getAge() > 18).toList();
-        for (Person person : finalList) {
-            if (person.getSex().equals(Sex.MAN) && person.getAge() < 65) {
-                Comparator.comparing(Person::getFamily);
-                toList();
-            } else if (person.getSex().equals(Sex.WOMAN) && person.getAge() < 60) {
-                Comparator.comparing(Person::getFamily);
-                toList();
-            }
-        }
-        ;
+List<String> finalList = persons.stream()
+                .filter(ed -> ed.getEducation().equals(Education.HIGHER))
+                .filter(x -> x.getAge() > 18 && x.getAge() < 65)
+                .filter(m -> m.getSex().equals(Sex.MAN) | m.getSex().equals(Sex.WOMAN) && m.getAge() < 60)
+                .map(Person::getFamily)
+                .collect(toList());
     }
 }
